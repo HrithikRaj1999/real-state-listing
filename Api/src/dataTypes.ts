@@ -1,21 +1,21 @@
- export interface SignUpBodyType {
+export interface SignUpBodyType {
   username?: string;
   email?: string;
   password?: string;
 }
 
- export interface SignInBodyType {
+export interface SignInBodyType {
   email?: string;
   password?: string;
   keepMeSignedIn?: boolean;
 }
 
- export interface GoogleSignInControllerBodyType {
+export interface GoogleSignInControllerBodyType {
   name: string;
   email: string;
   photoUrl: string;
 }
- export interface userType {
+export interface userType {
   username: string;
   email: string;
   avatar: string;
@@ -26,7 +26,7 @@
   password?: string;
   token: string;
 }
- export interface MongoListingDataType {
+export interface MongoListingDataType {
   _id?: string;
   name?: string;
   description?: string;
@@ -39,14 +39,14 @@
   imageUrls?: string[];
   userRef?: string;
 }
- export interface updateUserControllerBody {
+export interface updateUserControllerBody {
   username?: string;
   email?: string;
   password?: string;
   avatar?: string;
   tokenUserId: string;
 }
- export interface QueryParams {
+export interface QueryParams {
   limit: string;
   startIndex: string;
   amenities?: string;
@@ -55,7 +55,14 @@
   sortBy?: string;
   roomType?: "furnished" | "un-furnished" | "semi-furnished" | undefined;
 }
- export interface itemType {
+export interface SpecificationsType {
+  bathroom: number;
+  bedrooms: number;
+  hall: number;
+  regularPrice: number;
+  discountedPrice: number;
+}
+export interface itemType {
   _id?: string;
   name: string;
   description: string;
@@ -67,7 +74,7 @@
   facilities: string[];
   imageUrls: string[];
 }
- export interface searchQueryType {
+export interface searchQueryType {
   name?: { $regex: string; $options: string };
   $text?: { $search: string };
   score: { $meta: "textScore" };
@@ -77,7 +84,7 @@
   address: { $regex: string; $options: "i" };
 }
 
- export interface JwtPayload {
-  id: string; 
+export interface JwtPayload {
+  id: string;
   iat: number;
 }
