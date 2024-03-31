@@ -12,7 +12,7 @@ export const verifyToken = (
   const token = req.cookies.access_token;
 
   if (!token) {
-    logger.error("User is invalid");
+    logger.error("User is invalid",req.cookies.access_tokens);
     return next(createHttpError(401, "Unauthorized"));
   }
   logger.info("user is valid", token);
