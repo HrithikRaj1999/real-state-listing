@@ -12,10 +12,10 @@ export const verifyToken = (
   const token = req.cookies.access_token;
 
   if (!token) {
-    logger.error("User is invalid",req.cookies.access_tokens);
+    logger.error("User is invalid", req.cookies.access_tokens);
     return next(createHttpError(401, "Unauthorized"));
   }
-  logger.info("user is valid", token);
+  logger.info("User is valid", token);
   jwt.verify(
     token,
     process.env.JWT_SECRET!,
