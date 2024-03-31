@@ -1,6 +1,6 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import express from "express";
+import express, { Express } from "express";
 import morgan from "morgan";
 import { cookieController } from "./src/controller/cookie.controller";
 import { authRouter } from "./src/routes/auth.routes";
@@ -11,12 +11,22 @@ import { verifyToken } from "./src/util/verifyUser";
 import errorHandler from "./src/util/error";
 import connectMongoDb from "./mongoConnect";
 import { testRouter } from "./src/routes/test.router";
-const app = express();
+import dotenv from "dotenv";
+dotenv.config();
+const app: Express = express();
 app.use(morgan("dev"));
-app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL!,
+    methods: ["GET", "PUT", "OPTIONS", "DELETE", "POST"], 
+    credentials: true,
+  })
+);
 connectMongoDb(app);
+
 app.use("/", testRouter);
 app.use("/api/checkCookie", verifyToken, cookieController);
 app.use("/api/user", userRouter);
