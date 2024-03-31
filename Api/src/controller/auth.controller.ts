@@ -59,7 +59,7 @@ export const SignInController: RequestHandler<
     );
     if (!isPassValid) return next(createHttpError(401, MESSAGES.FAILED_SIGNIN)); // to avoid brute force attack send a general message
     const token = jwt.sign({ id: existingUser._id }, JWT_SECRET);
-
+    console.log('Token Generated => ',token)
     // token will be only saved when keep me signed in will be enabled
     // else no token
     if (keepMeSignedIn) {
